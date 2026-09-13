@@ -94,6 +94,8 @@ if ($currentUser) {
                     ];
                 } elseif ($role_id == ROLE_PACIENTE) {
                     $menu += [
+                        'mis_citas' => ['label' => 'Mis Citas', 'url' => BASE_URL . '/pages/mis_citas.php', 'icon' => 'C'],
+                        'perfil' => ['label' => 'Mi Perfil', 'url' => BASE_URL . '/pages/perfil.php', 'icon' => 'P'],
                         // Próximas funcionalidades en desarrollo:
                         // 'mis_citas' => ['label' => 'Mis Citas', 'url' => BASE_URL . '/pages/mis_citas.php', 'icon' => '📅'],
                         // 'mis_consultas' => ['label' => 'Mis Consultas', 'url' => BASE_URL . '/pages/mis_consultas.php', 'icon' => '📋'],
