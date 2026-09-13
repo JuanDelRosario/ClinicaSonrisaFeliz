@@ -55,8 +55,10 @@
 }
 
 .clinic-logo-small {
-    font-size: 32px;
     flex-shrink: 0;
+    height: 44px;
+    object-fit: contain;
+    width: 44px;
 }
 
 .sidebar-header h2 {

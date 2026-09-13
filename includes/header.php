@@ -22,6 +22,7 @@ $assetsVersion = (string) max(
     filemtime(BASE_PATH . 'assets/css/dashboard.css') ?: 0,
     filemtime(BASE_PATH . 'assets/js/i18n.js') ?: 0
 );
+$logoVersion = (string) (filemtime(BASE_PATH . 'assets/images/logo-mi-sonrisa-feliz.png') ?: 0);
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +39,7 @@ $assetsVersion = (string) max(
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div class="clinic-logo-small">🦷</div>
+                <img class="clinic-logo-small" src="<?php echo ASSETS_URL; ?>/images/logo-mi-sonrisa-feliz.png?v=<?php echo $logoVersion; ?>" alt="Logo de Mi Sonrisa Feliz">
                 <h2>Mi Sonrisa Feliz</h2>
                 <button class="sidebar-toggle" id="sidebarToggle">☰</button>
             </div>

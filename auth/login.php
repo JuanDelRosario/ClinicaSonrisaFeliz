@@ -13,14 +13,7 @@
             <!-- Logo/Encabezado -->
             <div class="login-header">
                 <div class="clinic-logo">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="45" fill="#E8F5E9"/>
-                        <path d="M 30 45 Q 30 35 40 35 Q 50 35 50 45 Q 50 35 60 35 Q 70 45 70 45" fill="#4CAF50"/>
-                        <circle cx="35" cy="45" r="3" fill="#fff"/>
-                        <circle cx="50" cy="45" r="3" fill="#fff"/>
-                        <circle cx="65" cy="45" r="3" fill="#fff"/>
-                        <path d="M 35 55 L 65 55" stroke="#4CAF50" stroke-width="2" fill="none"/>
-                    </svg>
+                    <img src="../assets/images/logo-mi-sonrisa-feliz.png?v=<?php echo filemtime(__DIR__ . '/../assets/images/logo-mi-sonrisa-feliz.png'); ?>" alt="Logo de Mi Sonrisa Feliz">
                 </div>
                 <h1>Mi Sonrisa Feliz</h1>
                 <p>Clínica Dental</p>
