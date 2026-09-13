@@ -496,7 +496,21 @@
 
 /* Calendario de citas mostrado exclusivamente en el panel de los doctores. */
 .doctor-calendar-section {
+    background: linear-gradient(145deg, #ffffff 0%, #f5fbf6 100%);
+    border: 1px solid #dcecdf;
+    box-shadow: 0 12px 30px rgba(32, 83, 42, 0.09);
     overflow: hidden;
+    position: relative;
+}
+
+.doctor-calendar-section::before {
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-color), #8bc34a);
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .doctor-calendar-header {
@@ -504,11 +518,34 @@
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    margin-bottom: 18px;
+    border-bottom: 1px solid #dfece1;
+    margin: -25px -25px 20px;
+    padding: 25px 25px 18px;
+}
+
+.doctor-calendar-title {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+}
+
+.doctor-calendar-title-icon {
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    border-radius: 12px;
+    box-shadow: 0 5px 12px rgba(46, 125, 50, 0.24);
+    display: inline-flex;
+    font-size: 22px;
+    height: 46px;
+    justify-content: center;
+    width: 46px;
 }
 
 .doctor-calendar-header h2 {
-    margin-bottom: 5px;
+    border: 0;
+    font-size: 19px;
+    margin: 0 0 3px;
+    padding: 0;
 }
 
 .doctor-calendar-header p {
@@ -518,9 +555,14 @@
 }
 
 .doctor-calendar-navigation {
+    background: white;
+    border: 1px solid #d7e9da;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(43, 96, 51, 0.08);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    padding: 5px;
     white-space: nowrap;
 }
 
@@ -530,16 +572,33 @@
     border-radius: 50%;
     color: var(--primary-dark);
     display: inline-flex;
-    font-size: 28px;
-    height: 34px;
+    font-size: 26px;
+    height: 36px;
     justify-content: center;
     text-decoration: none;
-    width: 34px;
+    width: 36px;
 }
 
 .doctor-calendar-navigation a:hover {
     background: var(--primary-color);
     color: white;
+}
+
+.doctor-calendar-navigation strong {
+    color: var(--primary-dark);
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 1.2;
+    min-width: 132px;
+    text-align: center;
+}
+
+.doctor-calendar-navigation small {
+    color: var(--gray-700);
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 2px;
 }
 
 .doctor-calendar-weekdays,
@@ -549,8 +608,11 @@
 }
 
 .doctor-calendar-weekdays {
-    gap: 8px;
-    margin-bottom: 8px;
+    background: #e8f4e9;
+    border-radius: 9px;
+    gap: 0;
+    margin-bottom: 10px;
+    padding: 9px 3px;
     text-align: center;
     color: var(--gray-700);
     font-size: 12px;
@@ -558,27 +620,37 @@
 }
 
 .doctor-calendar-grid {
-    gap: 8px;
+    gap: 9px;
 }
 
 .doctor-calendar-day {
-    background: var(--gray-100);
-    border: 1px solid var(--gray-200);
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid #e0ebe1;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    min-height: 82px;
-    padding: 10px;
+    justify-content: space-between;
+    min-height: 92px;
+    padding: 11px;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.doctor-calendar-day:not(.is-empty):hover {
+    border-color: #9bcda1;
+    box-shadow: 0 8px 16px rgba(39, 105, 48, 0.12);
+    transform: translateY(-2px);
 }
 
 .doctor-calendar-day.has-appointments {
-    background: #edf8ee;
-    border-color: var(--primary-color);
+    background: linear-gradient(145deg, #f4fcf5 0%, #e1f4e4 100%);
+    border-color: #92c999;
 }
 
 .doctor-calendar-day.is-today {
-    box-shadow: inset 0 0 0 2px var(--primary-dark);
+    background: #fffdf1;
+    border-color: #e8ba36;
+    box-shadow: inset 0 0 0 1px #e8ba36;
 }
 
 .doctor-calendar-day.is-empty {
@@ -588,8 +660,25 @@
 }
 
 .doctor-calendar-date {
+    align-items: center;
+    background: #f0f5f0;
+    border-radius: 50%;
     color: var(--text-color);
+    display: inline-flex;
     font-weight: 700;
+    height: 28px;
+    justify-content: center;
+    width: 28px;
+}
+
+.doctor-calendar-day.has-appointments .doctor-calendar-date {
+    background: white;
+    color: var(--primary-dark);
+}
+
+.doctor-calendar-day.is-today .doctor-calendar-date {
+    background: #f5c84c;
+    color: #5d4300;
 }
 
 .doctor-calendar-count,
@@ -599,11 +688,12 @@
 }
 
 .doctor-calendar-count {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
     border-radius: 999px;
     color: white;
     font-weight: 700;
-    padding: 4px 7px;
+    box-shadow: 0 3px 7px rgba(46, 125, 50, 0.2);
+    padding: 5px 8px;
     width: fit-content;
 }
 
@@ -611,6 +701,38 @@
 .calendar-empty {
     color: var(--gray-700);
 }
+
+.doctor-calendar-free {
+    color: #93a096;
+    font-size: 11px;
+}
+
+.doctor-calendar-legend {
+    align-items: center;
+    color: var(--gray-700);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 11px;
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.doctor-calendar-legend span {
+    align-items: center;
+    display: inline-flex;
+    gap: 6px;
+}
+
+.legend-dot {
+    border-radius: 50%;
+    display: inline-block;
+    height: 9px;
+    width: 9px;
+}
+
+.legend-dot-appointments { background: var(--primary-color); }
+.legend-dot-today { background: #e8ba36; }
+.legend-dot-free { background: #dce5de; }
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -706,8 +828,17 @@
         flex-direction: column;
     }
 
+    .doctor-calendar-header {
+        margin: -15px -15px 16px;
+        padding: 20px 15px 15px;
+    }
+
+    .doctor-calendar-navigation strong {
+        min-width: 122px;
+    }
+
     .doctor-calendar-day {
-        min-height: 64px;
+        min-height: 68px;
         padding: 7px;
     }
 

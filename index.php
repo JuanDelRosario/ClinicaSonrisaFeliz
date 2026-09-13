@@ -233,16 +233,19 @@ include './includes/header.php';
             $days_in_month = (int) date('t', $calendar_timestamp);
             $first_weekday = (int) date('N', $calendar_timestamp);
             $today = date('Y-m-d');
+            $calendar_total = array_sum($calendar_counts);
             ?>
             <div class="section doctor-calendar-section">
                 <div class="doctor-calendar-header">
-                    <div>
-                        <h2>Citas programadas por día</h2>
+                    <div class="doctor-calendar-title">
+                        <span class="doctor-calendar-title-icon" aria-hidden="true">📆</span>
+                        <div><h2>Citas programadas por día</h2>
                         <p>Solo se cuentan las citas pendientes de atender o confirmadas.</p>
+                        </div>
                     </div>
                     <div class="doctor-calendar-navigation" aria-label="Cambiar mes del calendario">
                         <a href="<?php echo BASE_URL; ?>/index.php?mes=<?php echo $previous_month; ?>" aria-label="Mes anterior">&lsaquo;</a>
-                        <strong><?php echo $month_names[(int) date('n', $calendar_timestamp)] . ' ' . date('Y', $calendar_timestamp); ?></strong>
+                        <strong><?php echo $month_names[(int) date('n', $calendar_timestamp)] . ' ' . date('Y', $calendar_timestamp); ?><small><?php echo $calendar_total; ?> <?php echo $calendar_total === 1 ? 'cita programada' : 'citas programadas'; ?></small></strong>
                         <a href="<?php echo BASE_URL; ?>/index.php?mes=<?php echo $next_month; ?>" aria-label="Mes siguiente">&rsaquo;</a>
                     </div>
                 </div>
@@ -269,6 +272,7 @@ include './includes/header.php';
                         </div>
                     <?php endfor; ?>
                 </div>
+                <div class="doctor-calendar-legend"><span><i class="legend-dot legend-dot-appointments"></i> Día con citas</span><span><i class="legend-dot legend-dot-today"></i> Día actual</span><span><i class="legend-dot legend-dot-free"></i> Sin citas</span></div>
             </div>
         </div>
 
