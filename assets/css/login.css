@@ -60,9 +60,9 @@ body {
 }
 
 .clinic-logo {
-    width: 104px;
-    height: 104px;
-    margin: 0 auto 20px;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 14px;
     /* El logo es un elemento visual independiente; nunca se usa como fondo. */
     background: transparent;
     background-image: none;
@@ -288,9 +288,8 @@ body {
     }
 
     .clinic-logo {
-        width: 70px;
-        height: 70px;
-        font-size: 40px;
+        width: 58px;
+        height: 58px;
     }
 
     .info-content h2 {
@@ -316,9 +315,8 @@ body {
     }
 
     .clinic-logo {
-        width: 60px;
-        height: 60px;
-        font-size: 32px;
+        width: 52px;
+        height: 52px;
     }
 
     .form-control {

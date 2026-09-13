@@ -230,6 +230,7 @@ textarea.form-control {
 
 .table-responsive {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     background-color: white;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -242,6 +243,32 @@ textarea.form-control {
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
+}
+
+/* Ajustes de interacción y lectura para teléfonos y pantallas compactas. */
+@media (max-width: 600px) {
+    html, body {
+        font-size: 14px;
+    }
+
+    button, .btn, a.btn {
+        min-height: 42px;
+    }
+
+    .table {
+        min-width: 620px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px 12px;
+        white-space: nowrap;
+    }
+
+    .alert {
+        align-items: flex-start;
+        font-size: 13px;
+    }
 }
 
 .badge-programada {

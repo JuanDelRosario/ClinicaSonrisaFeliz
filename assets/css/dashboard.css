@@ -929,6 +929,36 @@
     .stat-icon {
         font-size: 28px;
     }
+
+    .topbar-right {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .language-switcher {
+        order: -1;
+    }
+
+    .doctor-calendar-section {
+        overflow-x: auto;
+    }
+
+    .doctor-calendar-weekdays,
+    .doctor-calendar-grid {
+        min-width: 500px;
+    }
+
+    .doctor-calendar-day {
+        min-height: 58px;
+    }
+
+    .doctor-calendar-free {
+        display: none;
+    }
+
+    .doctor-calendar-legend {
+        min-width: 500px;
+    }
 }
 
 /* Animaciones */
