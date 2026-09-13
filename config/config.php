@@ -26,7 +26,8 @@ function displayText($value): string {
 // Información de la clínica
 define('CLINIC_NAME', 'Clínica Dental Mi Sonrisa Feliz');
 define('CLINIC_EMAIL', 'info@clinicasonrisafeliz.com');
-define('CLINIC_PHONE', '+34 612 345 678');
+define('CLINIC_PHONE', '+1 (849) 282-5216');
+define('CLINIC_ADDRESS', 'Carrera Vieja de Sabana Perdida, Santo Domingo Norte, República Dominicana');
 
 // Rutas del proyecto
 define('BASE_URL', 'http://localhost/ClinicaSonrisaFeliz');
