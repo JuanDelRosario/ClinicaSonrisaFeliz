@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/config.php';
 checkSession();
+header('Content-Type: text/html; charset=UTF-8');
 
 if (!checkPermission('facturacion') && $_SESSION['user_role'] != ROLE_ADMIN && $_SESSION['user_role'] != ROLE_CONTADOR && $_SESSION['user_role'] != ROLE_PACIENTE) {
     header('Location: ' . BASE_URL . '/index.php'); exit();
@@ -20,7 +21,7 @@ $invoice = getRecord("SELECT f.*, p.nombre paciente_nombre, p.apellido paciente_
 if (!$invoice) { http_response_code(404); exit('Factura no encontrada.'); }
 $amountDue = max(0, (float)$invoice['total'] - (float)$invoice['total_pagado']);
 // Escapa valores de la base antes de imprimirlos en HTML.
-function invoiceValue($value) { return htmlspecialchars((string)($value ?? '—'), ENT_QUOTES, 'UTF-8'); }
+function invoiceValue($value) { return displayText($value ?? '—'); }
 ?>
 <!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Factura <?=invoiceValue($invoice['numero_factura'])?></title>
 <style>
@@ -31,4 +32,5 @@ body{font-family:Arial,sans-serif;color:#1f2937;background:#f3f4f6;margin:0}.inv
 <table class="table"><thead><tr><th>Descripción</th><th>Subtotal</th><th>Impuesto</th><th>Total</th></tr></thead><tbody><tr><td><?=nl2br(invoiceValue($invoice['descripcion_servicios']))?></td><td>Bs <?=number_format((float)$invoice['subtotal'],2)?></td><td>Bs <?=number_format((float)$invoice['impuesto'],2)?></td><td>Bs <?=number_format((float)$invoice['total'],2)?></td></tr></tbody></table>
 <section class="totals"><div><span>Subtotal</span><strong>Bs <?=number_format((float)$invoice['subtotal'],2)?></strong></div><div><span>Impuesto</span><strong>Bs <?=number_format((float)$invoice['impuesto'],2)?></strong></div><div class="grand"><span>Total</span><span>Bs <?=number_format((float)$invoice['total'],2)?></span></div></section><?php if($invoice['notas']):?><p><strong>Notas:</strong> <?=invoiceValue($invoice['notas'])?></p><?php endif;?></main>
 <div class="actions"><button class="btn" onclick="window.print()">Imprimir factura</button><button class="btn secondary" onclick="history.back()">Volver</button></div>
+<script src="<?= ASSETS_URL ?>/js/i18n.js"></script>
 </body></html>

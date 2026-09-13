@@ -86,8 +86,8 @@ include './includes/header.php';
 
 <div class="dashboard-container">
     <div class="dashboard-header">
-        <h1>Bienvenido, <?php echo $_SESSION['user_name']; ?></h1>
-        <p>Rol: <strong><?php echo $_SESSION['user_role_name']; ?></strong></p>
+        <h1>Bienvenido, <?php echo displayText($_SESSION['user_name']); ?></h1>
+        <p>Rol: <strong><?php echo displayText($_SESSION['user_role_name']); ?></strong></p>
     </div>
 
     <!-- Dashboard Administrador -->

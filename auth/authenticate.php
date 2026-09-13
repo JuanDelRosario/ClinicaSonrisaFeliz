@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response['message'] = 'Método de solicitud inválido';
 }
 
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
 echo json_encode($response);
 
 ?>

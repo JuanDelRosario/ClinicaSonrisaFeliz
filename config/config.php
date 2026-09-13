@@ -4,7 +4,24 @@
  * Clínica Dental "Mi Sonrisa Feliz"
  */
 
+// Fuerza UTF-8 en todas las respuestas PHP antes de iniciar la sesión.
+ini_set('default_charset', 'UTF-8');
 session_start();
+
+/** Prepara texto para HTML conservando acentos, ñ y otros caracteres Unicode. */
+function displayText($value): string {
+    $text = (string) ($value ?? '');
+    if (function_exists('mb_check_encoding') && !mb_check_encoding($text, 'UTF-8')) {
+        $text = mb_convert_encoding($text, 'UTF-8', 'ISO-8859-1');
+    } elseif (function_exists('mb_convert_encoding') && preg_match('/(?:Ã.|Â.|â.)/u', $text)) {
+        // Repara textos antiguos que fueron codificados dos veces.
+        $repaired = mb_convert_encoding($text, 'ISO-8859-1', 'UTF-8');
+        if (mb_check_encoding($repaired, 'UTF-8')) {
+            $text = $repaired;
+        }
+    }
+    return htmlspecialchars($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
 
 // Información de la clínica
 define('CLINIC_NAME', 'Clínica Dental Mi Sonrisa Feliz');

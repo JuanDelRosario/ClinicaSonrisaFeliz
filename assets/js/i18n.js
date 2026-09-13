@@ -26,6 +26,59 @@
         'Registrar': 'Register', 'Imprimir': 'Print', 'Imprimir factura': 'Print invoice'
     };
 
+    // Textos de las vistas especializadas (citas, consultas, perfiles y calendario).
+    Object.assign(translations, {
+        'Español': 'Spanish', 'Idioma / Language': 'Language', 'Bienvenido,': 'Welcome,', 'Rol:': 'Role:',
+        'Usuarios pacientes': 'Patient users', 'Nuevo Usuario': 'New user', 'Nueva Cita': 'New appointment',
+        'Nuevo usuario': 'New user', 'Nuevo usuario paciente': 'New patient user', 'Guardar usuario': 'Save user',
+        'Agendar cita': 'Schedule appointment', 'Agendar nueva cita': 'Schedule new appointment',
+        'Cambiar cita': 'Reschedule appointment', 'Guardar cambio': 'Save changes', 'Reservar cita': 'Book appointment',
+        'Cambiar': 'Reschedule', 'Mis citas': 'My appointments', 'Mis Citas': 'My appointments',
+        'Mis Próximas Citas': 'My upcoming appointments', 'Médicos disponibles': 'Available doctors',
+        'Historial y próximas citas': 'History and upcoming appointments', 'Médico': 'Doctor', 'Servicio': 'Service',
+        'Hora': 'Time', 'Fecha': 'Date', 'Notas': 'Notes', 'Cédula': 'National ID',
+        'Seleccione un médico': 'Select a doctor', 'Seleccione un servicio': 'Select a service',
+        'Seleccione médico, servicio y fecha.': 'Select a doctor, service, and date.',
+        'Motivo de la cita o información adicional': 'Reason for the appointment or additional information',
+        'Buscar por nombre o cédula': 'Search by name or national ID',
+        'Registro y búsqueda rápida por nombre o cédula.': 'Quick registration and search by name or national ID.',
+        'Confirmación de citas': 'Appointment confirmation', 'Mis citas de atención': 'My care appointments',
+        'Nueva cita': 'New appointment', 'Confirmar': 'Confirm', 'Completar cita': 'Complete appointment',
+        'Sin acción': 'No action', 'Acción': 'Action', 'Especialidad': 'Specialty',
+        'Mis consultas clínicas': 'My clinical consultations', 'Consultas pendientes de registrar': 'Consultations pending registration',
+        'Mis consultas': 'My consultations', 'Registrar consulta': 'Register consultation',
+        'Editar consulta pendiente': 'Edit pending consultation', 'Guardar consulta': 'Save consultation',
+        'Completar consulta': 'Complete consultation', 'Motivo de consulta': 'Reason for consultation',
+        'Diagnóstico': 'Diagnosis', 'Tratamiento': 'Treatment', 'Medicamentos prescritos': 'Prescribed medications',
+        'Observaciones': 'Notes', 'Próxima cita': 'Next appointment',
+        'Citas Programadas Hoy': "Today's scheduled appointments", 'Mis Citas de Hoy': "My appointments today",
+        'Citas programadas por día': 'Scheduled appointments by day', 'Día con citas': 'Day with appointments',
+        'Día actual': 'Today', 'Sin citas': 'No appointments', 'Libre': 'Available',
+        'Mes anterior': 'Previous month', 'Mes siguiente': 'Next month',
+        'pendiente': 'pending', 'programada': 'scheduled', 'confirmada': 'confirmed', 'completada': 'completed',
+        'cancelada': 'cancelled', 'pagada': 'paid', 'activo': 'active', 'inactivo': 'inactive',
+        'No hay citas para mostrar.': 'There are no appointments to display.',
+        'No tienes citas registradas para hoy.': 'You have no appointments scheduled for today.',
+        'Aún no tienes citas registradas.': 'You do not have any appointments yet.',
+        'Aún no tienes consultas registradas.': 'You do not have any consultations yet.',
+        'No hay citas completadas pendientes de registrar.': 'There are no completed appointments pending registration.',
+        'Configuración': 'Settings', 'Clínica': 'Clinic', 'Tiempo de sesión': 'Session timeout',
+        'Mi perfil': 'My profile', 'Usuario': 'Username', 'Correo': 'Email', 'Teléfono': 'Phone',
+        'Consulta de registros del sistema.': 'System records overview.',
+        'Resumen financiero y alertas operativas.': 'Financial summary and operational alerts.',
+        'Comprobante de servicios odontológicos': 'Dental services receipt', 'Factura': 'Invoice',
+        'Facturar a': 'Bill to', 'Información de pago': 'Payment information', 'Método:': 'Method:',
+        'Estado:': 'Status:', 'Pagado:': 'Paid:', 'Saldo:': 'Balance:', 'Volver': 'Back',
+        'Panel de Control - Clínica Dental Mi Sonrisa Feliz': 'Control panel - Happy Smile Dental Clinic',
+        'Factura': 'Invoice'
+    });
+
+    const prefixTranslations = {
+        'Bienvenido,': 'Welcome,',
+        'Paciente:': 'Patient:',
+        'Horario:': 'Schedule:'
+    };
+
     // Reemplaza los textos visibles de una página por su traducción al inglés.
     function translateTextNodes(root) {
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -34,7 +87,15 @@
         nodes.forEach(node => {
             const original = node.nodeValue;
             const trimmed = original.trim();
-            if (translations[trimmed]) node.nodeValue = original.replace(trimmed, translations[trimmed]);
+            if (translations[trimmed]) {
+                node.nodeValue = original.replace(trimmed, translations[trimmed]);
+                return;
+            }
+            Object.entries(prefixTranslations).some(([spanish, english]) => {
+                if (!trimmed.startsWith(spanish)) return false;
+                node.nodeValue = original.replace(trimmed, english + trimmed.slice(spanish.length));
+                return true;
+            });
         });
         root.querySelectorAll('[placeholder], [title], [aria-label]').forEach(element => {
             ['placeholder', 'title', 'aria-label'].forEach(attribute => {
@@ -55,7 +116,10 @@
                 window.location.reload();
             });
         }
-        if (language === 'en') translateTextNodes(document.body);
+        if (language === 'en') {
+            translateTextNodes(document.body);
+            if (translations[document.title]) document.title = translations[document.title];
+        }
 
         // Facturación: añadir acceso directo al comprobante imprimible.
         if (window.location.pathname.endsWith('/pages/facturacion.php')) {

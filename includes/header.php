@@ -7,6 +7,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/ClinicaSonrisaFeliz/config/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/ClinicaSonrisaFeliz/config/database.php';
 checkSession();
+header('Content-Type: text/html; charset=UTF-8');
 
 // Sincroniza el nombre de la sesión con UTF-8 desde la base de datos.
 // Esto evita conservar textos dañados si la sesión se inició antes de una corrección de codificación.
@@ -21,7 +22,7 @@ if ($currentUser) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control - <?php echo CLINIC_NAME; ?></title>
+    <title>Panel de Control - <?php echo displayText(CLINIC_NAME); ?></title>
     <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css">
     <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/dashboard.css">
 </head>
@@ -129,8 +130,8 @@ if ($currentUser) {
                         <?php echo strtoupper(substr($_SESSION['user_name'], 0, 2)); ?>
                     </div>
                     <div class="user-details">
-                        <div class="user-name"><?php echo $_SESSION['user_name']; ?></div>
-                        <div class="user-role"><?php echo $_SESSION['user_role_name']; ?></div>
+                        <div class="user-name"><?php echo displayText($_SESSION['user_name']); ?></div>
+                        <div class="user-role"><?php echo displayText($_SESSION['user_role_name']); ?></div>
                     </div>
                 </div>
                 <a href="<?php echo BASE_URL; ?>/auth/logout.php" class="btn-logout">Salir</a>
@@ -159,7 +160,7 @@ if ($currentUser) {
                     <span class="notification-count">3</span>
                 </div>
                 <div class="user-menu">
-                    <button class="btn-user-menu"><?php echo $_SESSION['user_name']; ?> ▼</button>
+                    <button class="btn-user-menu"><?php echo displayText($_SESSION['user_name']); ?> ▼</button>
                     <div class="user-dropdown" style="display: none;">
                         <a href="<?php echo BASE_URL; ?>/pages/perfil.php">👤 Mi Perfil</a>
                         <a href="<?php echo BASE_URL; ?>/pages/configuracion.php">⚙️ Configuración</a>
