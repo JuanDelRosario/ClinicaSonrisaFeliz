@@ -63,12 +63,17 @@ body {
     width: 104px;
     height: 104px;
     margin: 0 auto 20px;
+    /* El logo es un elemento visual independiente; nunca se usa como fondo. */
+    background: transparent;
+    background-image: none;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .clinic-logo img {
+    background: transparent;
+    display: block;
     height: 100%;
     object-fit: contain;
     width: 100%;
