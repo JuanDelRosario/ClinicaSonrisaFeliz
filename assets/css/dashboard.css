@@ -494,6 +494,124 @@
     box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
+/* Calendario de citas mostrado exclusivamente en el panel de los doctores. */
+.doctor-calendar-section {
+    overflow: hidden;
+}
+
+.doctor-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.doctor-calendar-header h2 {
+    margin-bottom: 5px;
+}
+
+.doctor-calendar-header p {
+    margin: 0;
+    color: var(--gray-700);
+    font-size: 13px;
+}
+
+.doctor-calendar-navigation {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+.doctor-calendar-navigation a {
+    align-items: center;
+    background: var(--gray-100);
+    border-radius: 50%;
+    color: var(--primary-dark);
+    display: inline-flex;
+    font-size: 28px;
+    height: 34px;
+    justify-content: center;
+    text-decoration: none;
+    width: 34px;
+}
+
+.doctor-calendar-navigation a:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.doctor-calendar-weekdays,
+.doctor-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.doctor-calendar-weekdays {
+    gap: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    color: var(--gray-700);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.doctor-calendar-grid {
+    gap: 8px;
+}
+
+.doctor-calendar-day {
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 82px;
+    padding: 10px;
+}
+
+.doctor-calendar-day.has-appointments {
+    background: #edf8ee;
+    border-color: var(--primary-color);
+}
+
+.doctor-calendar-day.is-today {
+    box-shadow: inset 0 0 0 2px var(--primary-dark);
+}
+
+.doctor-calendar-day.is-empty {
+    background: transparent;
+    border-style: dashed;
+    min-height: 0;
+}
+
+.doctor-calendar-date {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.doctor-calendar-count,
+.doctor-calendar-free {
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.doctor-calendar-count {
+    background: var(--primary-color);
+    border-radius: 999px;
+    color: white;
+    font-weight: 700;
+    padding: 4px 7px;
+    width: fit-content;
+}
+
+.doctor-calendar-free,
+.calendar-empty {
+    color: var(--gray-700);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .layout {
@@ -581,6 +699,21 @@
 
     .quick-actions {
         grid-template-columns: 1fr;
+    }
+
+    .doctor-calendar-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .doctor-calendar-day {
+        min-height: 64px;
+        padding: 7px;
+    }
+
+    .doctor-calendar-count,
+    .doctor-calendar-free {
+        font-size: 10px;
     }
 }
 

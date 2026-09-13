@@ -25,11 +25,41 @@ if ($role_id == ROLE_ADMIN) {
     $stats['facturacion_pendiente'] = getRecord("SELECT SUM(total) as total FROM facturacion WHERE estado_factura = 'pendiente'")['total'] ?? 0;
     
 } elseif ($role_id == ROLE_DOCTOR) {
-    // Estadísticas para Doctor
+    // Estadísticas y calendario para Doctor
     $doctor_id = getRecord("SELECT id_doctor FROM doctores WHERE id_usuario = ?", [$user_id])['id_doctor'] ?? 0;
-    $stats['citas_hoy'] = getRecord("SELECT COUNT(*) as count FROM citas WHERE id_doctor = ? AND DATE(fecha_cita) = CURDATE()", [$doctor_id])['count'] ?? 0;
+    $stats['citas_hoy'] = getRecord(
+        "SELECT COUNT(*) as count FROM citas
+         WHERE id_doctor = ? AND DATE(fecha_cita) = CURDATE()
+         AND estado_cita IN ('programada', 'confirmada')",
+        [$doctor_id]
+    )['count'] ?? 0;
     $stats['consultas_mes'] = getRecord("SELECT COUNT(*) as count FROM consultas WHERE id_doctor = ? AND MONTH(fecha_consulta) = MONTH(NOW())", [$doctor_id])['count'] ?? 0;
     $stats['pacientes'] = getRecord("SELECT COUNT(DISTINCT id_paciente) as count FROM citas WHERE id_doctor = ?", [$doctor_id])['count'] ?? 0;
+
+    // Permite revisar cualquier mes sin aceptar una fecha inválida en la URL.
+    $calendar_month = isset($_GET['mes']) && preg_match('/^\\d{4}-\\d{2}$/', $_GET['mes'])
+        ? $_GET['mes']
+        : date('Y-m');
+    $calendar_timestamp = strtotime($calendar_month . '-01');
+    if ($calendar_timestamp === false) {
+        $calendar_timestamp = strtotime(date('Y-m-01'));
+        $calendar_month = date('Y-m');
+    }
+
+    $calendar_start = date('Y-m-01', $calendar_timestamp);
+    $calendar_end = date('Y-m-01', strtotime('+1 month', $calendar_timestamp));
+    $calendar_counts = [];
+    $calendar_rows = getRecords(
+        "SELECT fecha_cita, COUNT(*) AS cantidad
+         FROM citas
+         WHERE id_doctor = ? AND fecha_cita >= ? AND fecha_cita < ?
+         AND estado_cita IN ('programada', 'confirmada')
+         GROUP BY fecha_cita",
+        [$doctor_id, $calendar_start, $calendar_end]
+    );
+    foreach ($calendar_rows as $calendar_row) {
+        $calendar_counts[$calendar_row['fecha_cita']] = (int) $calendar_row['cantidad'];
+    }
     
 } elseif ($role_id == ROLE_RECEPCIONISTA) {
     // Estadísticas para Recepcionista
@@ -122,7 +152,7 @@ include './includes/header.php';
             <div class="stat-card">
                 <div class="stat-icon">📅</div>
                 <div class="stat-content">
-                    <div class="stat-label">Citas de Hoy</div>
+                    <div class="stat-label">Citas Programadas Hoy</div>
                     <div class="stat-value"><?php echo $stats['citas_hoy']; ?></div>
                 </div>
             </div>
@@ -148,7 +178,6 @@ include './includes/header.php';
             <div class="section">
                 <h2>Mis Citas de Hoy</h2>
                 <?php
-                $doctor_id = getRecord("SELECT id_doctor FROM doctores WHERE id_usuario = ?", [$user_id])['id_doctor'] ?? 0;
                 $citas = getRecords(
                     "SELECT c.*, p.id_paciente, CONCAT(u.nombre, ' ', u.apellido) as paciente_nombre, s.nombre_servicio
                      FROM citas c
@@ -172,6 +201,9 @@ include './includes/header.php';
                             </tr>
                         </thead>
                         <tbody>
+                            <?php if (empty($citas)): ?>
+                                <tr><td colspan="5" class="calendar-empty">No tienes citas registradas para hoy.</td></tr>
+                            <?php else: ?>
                             <?php foreach ($citas as $cita): ?>
                                 <tr>
                                     <td><?php echo substr($cita['hora_cita'], 0, 5); ?></td>
@@ -183,8 +215,59 @@ include './includes/header.php';
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <?php
+            // Datos que necesita la cuadrícula del mes seleccionado.
+            $month_names = [
+                1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
+                5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
+                9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'
+            ];
+            $previous_month = date('Y-m', strtotime('-1 month', $calendar_timestamp));
+            $next_month = date('Y-m', strtotime('+1 month', $calendar_timestamp));
+            $days_in_month = (int) date('t', $calendar_timestamp);
+            $first_weekday = (int) date('N', $calendar_timestamp);
+            $today = date('Y-m-d');
+            ?>
+            <div class="section doctor-calendar-section">
+                <div class="doctor-calendar-header">
+                    <div>
+                        <h2>Citas programadas por día</h2>
+                        <p>Solo se cuentan las citas pendientes de atender o confirmadas.</p>
+                    </div>
+                    <div class="doctor-calendar-navigation" aria-label="Cambiar mes del calendario">
+                        <a href="<?php echo BASE_URL; ?>/index.php?mes=<?php echo $previous_month; ?>" aria-label="Mes anterior">&lsaquo;</a>
+                        <strong><?php echo $month_names[(int) date('n', $calendar_timestamp)] . ' ' . date('Y', $calendar_timestamp); ?></strong>
+                        <a href="<?php echo BASE_URL; ?>/index.php?mes=<?php echo $next_month; ?>" aria-label="Mes siguiente">&rsaquo;</a>
+                    </div>
+                </div>
+                <div class="doctor-calendar-weekdays" aria-hidden="true">
+                    <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                </div>
+                <div class="doctor-calendar-grid">
+                    <?php for ($blank_day = 1; $blank_day < $first_weekday; $blank_day++): ?>
+                        <div class="doctor-calendar-day is-empty"></div>
+                    <?php endfor; ?>
+                    <?php for ($day = 1; $day <= $days_in_month; $day++): ?>
+                        <?php
+                        $date_key = $calendar_month . '-' . str_pad((string) $day, 2, '0', STR_PAD_LEFT);
+                        $appointment_count = $calendar_counts[$date_key] ?? 0;
+                        $is_today = $date_key === $today;
+                        ?>
+                        <div class="doctor-calendar-day<?php echo $is_today ? ' is-today' : ''; ?><?php echo $appointment_count > 0 ? ' has-appointments' : ''; ?>">
+                            <span class="doctor-calendar-date"><?php echo $day; ?></span>
+                            <?php if ($appointment_count > 0): ?>
+                                <span class="doctor-calendar-count"><?php echo $appointment_count; ?> <?php echo $appointment_count === 1 ? 'cita' : 'citas'; ?></span>
+                            <?php else: ?>
+                                <span class="doctor-calendar-free">Libre</span>
+                            <?php endif; ?>
+                        </div>
+                    <?php endfor; ?>
                 </div>
             </div>
         </div>
