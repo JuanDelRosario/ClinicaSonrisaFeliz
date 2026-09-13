@@ -32,5 +32,5 @@ body{font-family:Arial,sans-serif;color:#1f2937;background:#f3f4f6;margin:0}.inv
 <table class="table"><thead><tr><th>Descripción</th><th>Subtotal</th><th>Impuesto</th><th>Total</th></tr></thead><tbody><tr><td><?=nl2br(invoiceValue($invoice['descripcion_servicios']))?></td><td>Bs <?=number_format((float)$invoice['subtotal'],2)?></td><td>Bs <?=number_format((float)$invoice['impuesto'],2)?></td><td>Bs <?=number_format((float)$invoice['total'],2)?></td></tr></tbody></table>
 <section class="totals"><div><span>Subtotal</span><strong>Bs <?=number_format((float)$invoice['subtotal'],2)?></strong></div><div><span>Impuesto</span><strong>Bs <?=number_format((float)$invoice['impuesto'],2)?></strong></div><div class="grand"><span>Total</span><span>Bs <?=number_format((float)$invoice['total'],2)?></span></div></section><?php if($invoice['notas']):?><p><strong>Notas:</strong> <?=invoiceValue($invoice['notas'])?></p><?php endif;?></main>
 <div class="actions"><button class="btn" onclick="window.print()">Imprimir factura</button><button class="btn secondary" onclick="history.back()">Volver</button></div>
-<script src="<?= ASSETS_URL ?>/js/i18n.js"></script>
+<script src="<?= ASSETS_URL ?>/js/i18n.js?v=<?= filemtime(BASE_PATH . 'assets/js/i18n.js') ?>"></script>
 </body></html>

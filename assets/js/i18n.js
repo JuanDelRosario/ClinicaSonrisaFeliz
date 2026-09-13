@@ -85,6 +85,48 @@
         'Septiembre': 'September', 'Octubre': 'October', 'Noviembre': 'November', 'Diciembre': 'December'
     };
 
+    // Valores controlados que llegan desde la base de datos. No se traducen nombres,
+    // diagnósticos, direcciones ni notas, pues son información propia del paciente.
+    const databaseTranslations = {
+        'Odontología general': 'General dentistry',
+        'Consulta general': 'General consultation',
+        'Limpieza dental': 'Dental cleaning',
+        'Recepcionista': 'Receptionist',
+        'Administrador': 'Administrator',
+        'Endodoncia': 'Endodontics',
+        'Ortodoncia': 'Orthodontics',
+        'Periodoncia': 'Periodontics',
+        'Contador': 'Accountant',
+        'Paciente': 'Patient',
+        'programada': 'scheduled', 'Programada': 'Scheduled',
+        'confirmada': 'confirmed', 'Confirmada': 'Confirmed',
+        'completada': 'completed', 'Completada': 'Completed',
+        'cancelada': 'cancelled', 'Cancelada': 'Cancelled',
+        'no_asistio': 'did not attend', 'No asistió': 'Did not attend',
+        'pendiente': 'pending', 'Pendiente': 'Pending',
+        'pagada': 'paid', 'Pagada': 'Paid', 'anulada': 'voided', 'Anulada': 'Voided',
+        'activo': 'active', 'Activo': 'Active', 'inactivo': 'inactive', 'Inactivo': 'Inactive',
+        'confirmado': 'confirmed', 'Confirmado': 'Confirmed',
+        'rechazado': 'rejected', 'Rechazado': 'Rejected',
+        'efectivo': 'cash', 'Efectivo': 'Cash', 'tarjeta': 'card', 'Tarjeta': 'Card',
+        'transferencia': 'bank transfer', 'Transferencia': 'Bank transfer', 'cheque': 'check', 'Cheque': 'Check',
+        'masculino': 'male', 'Masculino': 'Male', 'femenino': 'female', 'Femenino': 'Female',
+        'otro': 'other', 'Otro': 'Other', 'soltero': 'single', 'Soltero': 'Single',
+        'casado': 'married', 'Casado': 'Married', 'divorciado': 'divorced', 'Divorciado': 'Divorced',
+        'viudo': 'widowed', 'Viudo': 'Widowed', 'licencia': 'on leave', 'Licencia': 'On leave'
+    };
+
+    function translateDatabaseTerms(text) {
+        let translated = text;
+        // Las frases más largas se sustituyen primero para preservar su significado.
+        Object.entries(databaseTranslations)
+            .sort(([sourceA], [sourceB]) => sourceB.length - sourceA.length)
+            .forEach(([source, target]) => {
+                translated = translated.replaceAll(source, target);
+            });
+        return translated;
+    }
+
     // Reemplaza los textos visibles de una página por su traducción al inglés.
     function translateTextNodes(root) {
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -102,6 +144,8 @@
                 node.nodeValue = original.replace(trimmed, english + trimmed.slice(spanish.length));
                 return true;
             });
+            const translatedValue = translateDatabaseTerms(node.nodeValue);
+            if (translatedValue !== node.nodeValue) node.nodeValue = translatedValue;
         });
         root.querySelectorAll('[placeholder], [title], [aria-label]').forEach(element => {
             ['placeholder', 'title', 'aria-label'].forEach(attribute => {
