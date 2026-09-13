@@ -1,0 +1,15 @@
+# Archivos locales y secretos de desarrollo
+.env
+.env.*
+*.log
+*.cache
+
+# Configuración local de editores y sistema operativo
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+
+# Dependencias generadas
+vendor/
+node_modules/

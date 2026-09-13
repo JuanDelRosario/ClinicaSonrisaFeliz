@@ -1,0 +1,109 @@
+<?php
+/**
+ * Configuración General
+ * Clínica Dental "Mi Sonrisa Feliz"
+ */
+
+session_start();
+
+// Información de la clínica
+define('CLINIC_NAME', 'Clínica Dental Mi Sonrisa Feliz');
+define('CLINIC_EMAIL', 'info@clinicasonrisafeliz.com');
+define('CLINIC_PHONE', '+34 612 345 678');
+
+// Rutas del proyecto
+define('BASE_URL', 'http://localhost/ClinicaSonrisaFeliz');
+define('BASE_PATH', __DIR__ . '/../');
+define('ASSETS_URL', BASE_URL . '/assets');
+
+// Configuración de sesión
+define('SESSION_TIMEOUT', 3600); // 1 hora en segundos
+
+// Roles disponibles
+define('ROLE_ADMIN', 1);
+define('ROLE_DOCTOR', 2);
+define('ROLE_RECEPCIONISTA', 3);
+define('ROLE_PACIENTE', 4);
+define('ROLE_CONTADOR', 5);
+
+// Mapeo de roles
+$ROLES = [
+    1 => 'Administrador',
+    2 => 'Doctor',
+    3 => 'Recepcionista',
+    4 => 'Paciente',
+    5 => 'Contador'
+];
+
+// Permisos por rol
+$PERMISSIONS = [
+    1 => [ // Administrador
+        'usuarios', 'doctores', 'pacientes', 'citas', 'consultas',
+        'facturacion', 'inventario', 'reportes', 'auditorias'
+    ],
+    2 => [ // Doctor
+        'citas', 'consultas', 'historial_paciente', 'servicios'
+    ],
+    3 => [ // Recepcionista
+        'usuarios', 'pacientes', 'citas', 'facturacion'
+    ],
+    4 => [ // Paciente
+        'mis_citas', 'mis_consultas', 'mis_facturas'
+    ],
+    5 => [ // Contador
+        'facturacion', 'historial_facturacion', 'reportes'
+    ]
+];
+
+// Función para verificar sesión
+function checkSession() {
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
+        header('Location: ' . BASE_URL . '/auth/login.php');
+        exit();
+    }
+
+    // Verificar timeout de sesión
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > SESSION_TIMEOUT)) {
+        session_destroy();
+        header('Location: ' . BASE_URL . '/auth/login.php?timeout=1');
+        exit();
+    }
+
+    $_SESSION['last_activity'] = time();
+}
+
+// Función para verificar permiso
+function checkPermission($permission) {
+    global $PERMISSIONS;
+
+    if (!isset($_SESSION['user_role'])) {
+        return false;
+    }
+
+    $role_id = $_SESSION['user_role'];
+    
+    return in_array($permission, $PERMISSIONS[$role_id] ?? []);
+}
+
+// Función para obtener rol del usuario
+function getUserRole() {
+    return $_SESSION['user_role'] ?? null;
+}
+
+// Función para obtener nombre del rol
+function getRoleName($role_id) {
+    global $ROLES;
+    return $ROLES[$role_id] ?? 'Desconocido';
+}
+
+// Función para encriptar contraseña
+function hashPassword($password) {
+    return password_hash($password, PASSWORD_BCRYPT);
+}
+
+// Función para verificar contraseña
+function verifyPassword($password, $hash) {
+    return password_verify($password, $hash);
+}
+
+?>
