@@ -115,6 +115,7 @@ $logoVersion = (string) (filemtime(BASE_PATH . 'assets/images/logo-mi-sonrisa-fe
                     $menu += [
                         'facturacion' => ['label' => 'Facturación', 'url' => BASE_URL . '/pages/facturacion.php', 'icon' => 'F'],
                         'pagos' => ['label' => 'Pagos', 'url' => BASE_URL . '/pages/pagos.php', 'icon' => 'P'],
+                        'nomina' => ['label' => 'Nómina', 'url' => BASE_URL . '/pages/nomina.php', 'icon' => 'N'],
                         'reportes' => ['label' => 'Reportes', 'url' => BASE_URL . '/pages/reportes.php', 'icon' => 'R'],
                         // Próximas funcionalidades en desarrollo:
                         // 'facturacion' => ['label' => 'Facturación', 'url' => BASE_URL . '/pages/facturacion.php', 'icon' => '💰'],

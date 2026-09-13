@@ -101,6 +101,21 @@ CREATE TABLE IF NOT EXISTS historial_facturacion (
  CONSTRAINT fk_pago_usuario FOREIGN KEY(id_usuario_registra) REFERENCES usuarios(id_usuario) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
+-- Nómina: salario base por empleado y pagos mensuales gestionados por Contabilidad.
+CREATE TABLE IF NOT EXISTS empleados_nomina (
+ id_empleado_nomina INT AUTO_INCREMENT PRIMARY KEY, id_usuario INT NOT NULL UNIQUE,
+ salario_base DECIMAL(10,2) NOT NULL, estado ENUM('activo','inactivo') DEFAULT 'activo',
+ CONSTRAINT fk_nomina_usuario FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS pagos_nomina (
+ id_pago_nomina INT AUTO_INCREMENT PRIMARY KEY, id_empleado_nomina INT NOT NULL, periodo CHAR(7) NOT NULL,
+ monto DECIMAL(10,2) NOT NULL, metodo_pago ENUM('efectivo','tarjeta','transferencia','cheque') DEFAULT 'transferencia',
+ estado_pago ENUM('pagado','pendiente','anulado') DEFAULT 'pendiente', fecha_pago DATE NULL, id_usuario_registra INT NULL,
+ UNIQUE KEY uq_nomina_periodo(id_empleado_nomina,periodo),
+ CONSTRAINT fk_pago_nomina_empleado FOREIGN KEY(id_empleado_nomina) REFERENCES empleados_nomina(id_empleado_nomina),
+ CONSTRAINT fk_pago_nomina_usuario FOREIGN KEY(id_usuario_registra) REFERENCES usuarios(id_usuario) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS proveedores (
  id_proveedor INT AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(150) NOT NULL, nit VARCHAR(30) UNIQUE,
  telefono VARCHAR(25), email VARCHAR(120), direccion VARCHAR(255), estado ENUM('activo','inactivo') DEFAULT 'activo'

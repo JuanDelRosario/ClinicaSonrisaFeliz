@@ -1,1 +1,1 @@
-<?php $module = 'facturacion'; require_once __DIR__ . '/../includes/module_view.php';
+<?php require_once __DIR__ . '/../config/config.php'; if (($_SESSION['user_role'] ?? 0) === ROLE_CONTADOR) { $_GET['tab']='facturas'; require __DIR__ . '/finanzas_contador.php'; exit(); } $module = 'facturacion'; require_once __DIR__ . '/../includes/module_view.php';

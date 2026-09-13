@@ -69,7 +69,7 @@ $PERMISSIONS = [
         'mis_citas', 'mis_consultas', 'mis_facturas'
     ],
     5 => [ // Contador
-        'facturacion', 'historial_facturacion', 'reportes'
+        'facturacion', 'historial_facturacion', 'reportes', 'nomina'
     ]
 ];
 
