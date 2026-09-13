@@ -52,8 +52,11 @@
         'Diagnóstico': 'Diagnosis', 'Tratamiento': 'Treatment', 'Medicamentos prescritos': 'Prescribed medications',
         'Observaciones': 'Notes', 'Próxima cita': 'Next appointment',
         'Citas Programadas Hoy': "Today's scheduled appointments", 'Mis Citas de Hoy': "My appointments today",
+        'Consultas Este Mes': 'Consultations this month', 'Total Pacientes': 'Total patients',
         'Citas programadas por día': 'Scheduled appointments by day', 'Día con citas': 'Day with appointments',
         'Día actual': 'Today', 'Sin citas': 'No appointments', 'Libre': 'Available',
+        'Solo se cuentan las citas pendientes de atender o confirmadas.': 'Only pending or confirmed appointments are counted.',
+        'Lun': 'Mon', 'Mar': 'Tue', 'Mié': 'Wed', 'Jue': 'Thu', 'Vie': 'Fri', 'Sáb': 'Sat', 'Dom': 'Sun',
         'Mes anterior': 'Previous month', 'Mes siguiente': 'Next month',
         'pendiente': 'pending', 'programada': 'scheduled', 'confirmada': 'confirmed', 'completada': 'completed',
         'cancelada': 'cancelled', 'pagada': 'paid', 'activo': 'active', 'inactivo': 'inactive',
@@ -76,7 +79,10 @@
     const prefixTranslations = {
         'Bienvenido,': 'Welcome,',
         'Paciente:': 'Patient:',
-        'Horario:': 'Schedule:'
+        'Horario:': 'Schedule:',
+        'Enero': 'January', 'Febrero': 'February', 'Marzo': 'March', 'Abril': 'April',
+        'Mayo': 'May', 'Junio': 'June', 'Julio': 'July', 'Agosto': 'August',
+        'Septiembre': 'September', 'Octubre': 'October', 'Noviembre': 'November', 'Diciembre': 'December'
     };
 
     // Reemplaza los textos visibles de una página por su traducción al inglés.

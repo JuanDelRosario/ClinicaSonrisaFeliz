@@ -24,9 +24,9 @@
         </div>
     </footer>
 
-    <script src="<?php echo ASSETS_URL; ?>/js/main.js"></script>
-    <script src="<?php echo ASSETS_URL; ?>/js/sidebar.js"></script>
-    <script src="<?php echo ASSETS_URL; ?>/js/forms.js"></script>
-    <script src="<?php echo ASSETS_URL; ?>/js/i18n.js"></script>
+    <script src="<?php echo ASSETS_URL; ?>/js/main.js?v=<?php echo $assetsVersion ?? time(); ?>"></script>
+    <script src="<?php echo ASSETS_URL; ?>/js/sidebar.js?v=<?php echo $assetsVersion ?? time(); ?>"></script>
+    <script src="<?php echo ASSETS_URL; ?>/js/forms.js?v=<?php echo $assetsVersion ?? time(); ?>"></script>
+    <script src="<?php echo ASSETS_URL; ?>/js/i18n.js?v=<?php echo $assetsVersion ?? time(); ?>"></script>
 </body>
 </html>

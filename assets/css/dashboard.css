@@ -389,6 +389,50 @@
     color: var(--gray-700);
 }
 
+/* Identidad visual exclusiva para el espacio de trabajo de los médicos. */
+.doctor-dashboard {
+    background: radial-gradient(circle at 92% 5%, rgba(139, 195, 74, 0.16), transparent 25%), linear-gradient(180deg, #f7fbf7 0%, #ffffff 38%);
+    border-radius: 18px;
+    padding: 10px;
+}
+
+.doctor-dashboard .dashboard-header {
+    background: linear-gradient(125deg, #1f5d2a 0%, #2e7d32 58%, #55a044 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 24px rgba(30, 91, 42, 0.18);
+    margin: 0 0 24px;
+    overflow: hidden;
+    padding: 22px 26px;
+    position: relative;
+}
+
+.doctor-dashboard .dashboard-header::after {
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 50%;
+    content: '';
+    height: 145px;
+    position: absolute;
+    right: -42px;
+    top: -76px;
+    width: 145px;
+}
+
+.doctor-dashboard .dashboard-header h1,
+.doctor-dashboard .dashboard-header p {
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.doctor-dashboard .dashboard-header p { color: rgba(255, 255, 255, 0.83); }
+.doctor-dashboard .dashboard-header strong { color: white; }
+.doctor-dashboard .stat-card { border-left-width: 5px; }
+
+.doctor-dashboard .section:not(.doctor-calendar-section) {
+    border: 1px solid #e2eee3;
+    box-shadow: 0 8px 22px rgba(36, 91, 44, 0.07);
+}
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

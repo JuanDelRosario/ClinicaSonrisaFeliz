@@ -15,6 +15,13 @@ $currentUser = getRecord('SELECT nombre, apellido FROM usuarios WHERE id_usuario
 if ($currentUser) {
     $_SESSION['user_name'] = trim($currentUser['nombre'] . ' ' . $currentUser['apellido']);
 }
+
+// Actualiza la URL de recursos después de cada cambio para evitar caché obsoleta.
+$assetsVersion = (string) max(
+    filemtime(BASE_PATH . 'assets/css/style.css') ?: 0,
+    filemtime(BASE_PATH . 'assets/css/dashboard.css') ?: 0,
+    filemtime(BASE_PATH . 'assets/js/i18n.js') ?: 0
+);
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +30,8 @@ if ($currentUser) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Control - <?php echo displayText(CLINIC_NAME); ?></title>
-    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css">
-    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/dashboard.css">
+    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css?v=<?php echo $assetsVersion; ?>">
+    <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/dashboard.css?v=<?php echo $assetsVersion; ?>">
 </head>
 <body>
     <div class="layout">

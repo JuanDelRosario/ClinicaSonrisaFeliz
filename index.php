@@ -84,7 +84,7 @@ if ($role_id == ROLE_ADMIN) {
 include './includes/header.php';
 ?>
 
-<div class="dashboard-container">
+<div class="dashboard-container<?php echo $role_id == ROLE_DOCTOR ? ' doctor-dashboard' : ''; ?>">
     <div class="dashboard-header">
         <h1>Bienvenido, <?php echo displayText($_SESSION['user_name']); ?></h1>
         <p>Rol: <strong><?php echo displayText($_SESSION['user_role_name']); ?></strong></p>
