@@ -1041,3 +1041,26 @@
 .stat-icon .ui-icon { width: 26px; height: 26px; }.section { background: #fff; padding: 24px; }.section h2 { color: #173f2d; font-size: 18px; }
 .quick-actions { gap: 12px; }.action-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 15px; border: 1px solid #d9e8df; border-radius: 11px; background: #fff; color: #1c5e3d; font-weight: 700; box-shadow: 0 3px 10px rgba(24,69,46,.06); }.action-btn:hover { border-color: #6fbd91; background: #eff9f2; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(24,69,46,.12); }.action-btn .ui-icon { width: 17px; height: 17px; }
 @media (max-width:768px){.sidebar-nav{padding:12px 10px}.section{padding:16px}.stat-card{border-radius:14px}}
+
+/* En teléfonos el encabezado ocupa dos filas reales; así no se superpone al contenido. */
+@media (max-width: 600px) {
+    :root { --topbar-height: 124px; }
+    .layout { grid-template-rows: var(--topbar-height) minmax(0, 1fr); }
+    .topbar {
+        min-height: var(--topbar-height);
+        height: var(--topbar-height);
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 12px;
+    }
+    .topbar-left { width: 100%; min-height: 38px; flex: 0 0 auto; }
+    .topbar-right { width: 100%; min-height: 38px; justify-content: space-between; gap: 8px; flex-wrap: nowrap; }
+    .language-switcher { order: 0; }
+    .language-select { max-width: 108px; }
+    .user-menu { margin-left: auto; min-width: 0; }
+    .btn-user-menu { max-width: 154px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .main-content { padding: 16px 10px; }
+    .dashboard-header { padding: 4px 0 16px; }
+}
