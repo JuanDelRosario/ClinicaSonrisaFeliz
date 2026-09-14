@@ -14,9 +14,9 @@
                 <div class="clinic-logo">
                     <img src="../assets/images/logo-mi-sonrisa-feliz.png?v=<?php echo filemtime(__DIR__ . '/../assets/images/logo-mi-sonrisa-feliz.png'); ?>" alt="Logo de Mi Sonrisa Feliz">
                 </div>
-                <span class="login-kicker">PORTAL CLÍNICO</span>
-                <h1>Mi Sonrisa Feliz</h1>
-                <p>Accede de forma segura a tu espacio de trabajo.</p>
+                <span class="login-kicker">ACCESO SEGURO</span>
+                <h1>Bienvenido de nuevo</h1>
+                <p>Ingresa tus credenciales para continuar en el sistema.</p>
             </div>
 
             <form id="loginForm" class="login-form" action="authenticate.php" method="POST">
@@ -57,14 +57,14 @@
 
         <div class="login-info">
             <div class="info-content">
-                <span class="info-badge">GESTIÓN INTEGRAL</span>
-                <h2>Una operación clínica más ordenada.</h2>
-                <p>Centraliza la atención, los procesos administrativos y la información esencial de la clínica.</p>
+                <div class="info-brand">Mi Sonrisa Feliz</div>
+                <span class="info-badge">CLÍNICA DENTAL</span>
+                <h2>Gestión clínica con claridad y confianza.</h2>
+                <p>Un espacio integrado para acompañar cada etapa de la atención odontológica.</p>
                 <ul class="features">
-                    <li><span>✓</span> Gestión de pacientes y citas</li>
-                    <li><span>✓</span> Consultas e historial clínico</li>
-                    <li><span>✓</span> Facturación, pagos y nómina</li>
-                    <li><span>✓</span> Compras e inventario actualizado</li>
+                    <li><span>✓</span> Agenda, pacientes y consultas</li>
+                    <li><span>✓</span> Facturación y control administrativo</li>
+                    <li><span>✓</span> Información segura y centralizada</li>
                 </ul>
                 <div class="contact-info">
                     <p>+1 (849) 282-5216</p>
