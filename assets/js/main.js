@@ -263,3 +263,28 @@ const styles = `
 const styleTag = document.createElement('style');
 styleTag.textContent = styles;
 document.head.appendChild(styleTag);
+
+// Reemplaza los emojis heredados del tablero por iconos SVG, nítidos en cualquier resolución.
+document.addEventListener('DOMContentLoaded', () => {
+    const iconPaths = {
+        users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+        patient: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0M19 8v6M16 11h6"/>',
+        doctor: '<path d="M4 4h16v16H4z"/><path d="M12 7v10M7 12h10"/>',
+        calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>',
+        document: '<path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4M9 12h6M9 16h6"/>',
+        money: '<path d="M12 2v20M17 6.5c-1.2-1-2.8-1.5-5-1.5-3.2 0-5 1.5-5 3.5s1.8 3.1 5 3.7 5 1.7 5 3.8-1.8 3.5-5 3.5c-2.2 0-4-.7-5.3-1.9"/>',
+        clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+        check: '<path d="m5 12 4 4L19 6"/>',
+        report: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+        add: '<path d="M12 5v14M5 12h14"/>'
+    };
+    const svg = (icon) => `<svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${iconPaths[icon]}</svg>`;
+    const statIcons = ['users', 'patient', 'doctor', 'calendar', 'money', 'calendar', 'document', 'patient', 'calendar', 'patient', 'clock', 'calendar', 'document', 'money', 'document', 'money', 'check'];
+    document.querySelectorAll('.stat-icon').forEach((element, index) => { element.innerHTML = svg(statIcons[index] || 'document'); });
+    document.querySelectorAll('.action-btn').forEach((element) => {
+        const href = element.getAttribute('href') || '';
+        const icon = href.includes('reportes') ? 'report' : href.includes('facturacion') ? 'money' : href.includes('citas') ? 'calendar' : href.includes('pacientes') ? 'patient' : 'add';
+        element.textContent = element.textContent.replace(/^[^\p{L}\p{N}]+/u, '').trim();
+        element.insertAdjacentHTML('afterbegin', svg(icon));
+    });
+});

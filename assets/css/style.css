@@ -384,6 +384,42 @@ textarea.form-control {
     }
 }
 
+/* Sistema visual clínico: superficies, controles y tablas consistentes en todas las vistas. */
+:root {
+    --primary-color: #197a51;
+    --primary-dark: #105c3b;
+    --primary-light: #dff3e9;
+    --surface: #ffffff;
+    --surface-soft: #f5f8f7;
+    --ink: #16251e;
+    --muted: #63736c;
+    --border: #dce7e1;
+    --radius-lg: 16px;
+    --box-shadow: 0 8px 24px rgba(28, 58, 44, .08);
+    --box-shadow-lg: 0 16px 40px rgba(28, 58, 44, .13);
+}
+
+html, body { color: var(--ink); background: #f4f7f5; }
+.ui-icon { width: 1.15em; height: 1.15em; display: inline-block; vertical-align: -0.18em; flex: 0 0 auto; }
+button, .btn, a.btn { border-radius: 9px; font-weight: 650; letter-spacing: .01em; box-shadow: 0 1px 2px rgba(16, 40, 29, .08); }
+.btn-primary { background: linear-gradient(135deg, #198754, #11633f); }
+.btn-primary:hover { background: linear-gradient(135deg, #116f46, #0d5133); transform: translateY(-1px); box-shadow: 0 7px 16px rgba(20, 104, 65, .24); }
+.btn-secondary { background: #eef3f0; color: #31463b; border: 1px solid var(--border); }
+.btn-secondary:hover { background: #e2ebe6; color: #183e2a; }
+.btn-danger { background: #df3f3f; }
+.form-group label { color: #34483c; font-weight: 650; }
+.form-control { border-color: #cedcd5; border-radius: 9px; background: #fff; color: var(--ink); min-height: 42px; }
+.form-control:focus { border-color: #198754; box-shadow: 0 0 0 4px rgba(25,135,84,.12); }
+.content-section, .section { border: 1px solid rgba(220,231,225,.9); border-radius: var(--radius-lg); box-shadow: var(--box-shadow); }
+.table { border: 1px solid var(--border); box-shadow: none; border-radius: 12px; }
+.table thead { background: #f0f5f2; border-bottom-color: #d6e2dc; }
+.table th { color: #385046; font-size: 12px; text-transform: uppercase; letter-spacing: .045em; }
+.table td { border-bottom-color: #edf2ef; }
+.table tbody tr { transition: background .18s ease; }
+.table tbody tr:hover { background: #f4faf6; }
+.badge { padding: 5px 10px; border: 1px solid transparent; font-weight: 700; }
+.alert { border-radius: 11px; box-shadow: 0 3px 10px rgba(20,60,39,.05); }
+
 /* Animaciones */
 @keyframes fadeIn {
     from {
