@@ -3,6 +3,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    const compactBreakpoint = 1100;
     const sidebar = document.querySelector('.sidebar');
     const sidebarToggle = document.getElementById('sidebarToggle');
     const menuToggle = document.getElementById('menuToggle');
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < compactBreakpoint) {
                 sidebar.classList.remove('active');
             }
         });
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
-            if (window.innerWidth >= 768) {
+            if (window.innerWidth > compactBreakpoint) {
                 sidebar.classList.remove('active');
             }
         }, 250);
