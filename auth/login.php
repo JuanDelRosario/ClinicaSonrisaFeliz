@@ -45,8 +45,8 @@
                             placeholder="Ingrese su contraseña"
                             required
                         >
-                        <button type="button" class="toggle-password">
-                            <i class="eye-icon">👁️</i>
+                        <button type="button" class="toggle-password" aria-label="Mostrar contraseña">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg>
                         </button>
                     </div>
                 </div>
@@ -77,17 +77,17 @@
                 <h2>Bienvenido</h2>
                 <p>Sistema de Gestión para Clínica Dental</p>
                 <ul class="features">
-                    <li>✓ Gestión de Pacientes</li>
-                    <li>✓ Programación de Citas</li>
-                    <li>✓ Registro de Consultas</li>
-                    <li>✓ Control de Facturación</li>
-                    <li>✓ Historial Médico</li>
-                    <li>✓ Reporte de Ingresos</li>
+                    <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Gestión de Pacientes</li>
+                    <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Programación de Citas</li>
+                    <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Registro de Consultas</li>
+                    <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Control de Facturación</li>
+                    <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Historial Médico</li>
+                    <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>Reporte de Ingresos</li>
                 </ul>
                 <div class="contact-info">
-                    <p>📞(829)-282-5216</p>
-                    <p>📧 ozunajuan07@clinicasonrisafeliz.com</p>
-                    <p>🏥 Villa Mella, Vista Bella - Santo Domingo Norte</p>
+                    <p><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .8 2.9a2 2 0 0 1-.5 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.4 1.9.7 2.9.8A2 2 0 0 1 22 16.9Z"/></svg>+1 (849) 282-5216</p>
+                    <p><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>info@clinicasonrisafeliz.com</p>
+                    <p><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Villa Mella, Vista Bella - Santo Domingo Norte</p>
                 </div>
             </div>
         </div>

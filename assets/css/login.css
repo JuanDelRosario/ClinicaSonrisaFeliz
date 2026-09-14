@@ -153,6 +153,12 @@ body {
     color: var(--primary-color);
 }
 
+.toggle-password svg {
+    display: block;
+    height: 19px;
+    width: 19px;
+}
+
 .form-group input[type="checkbox"] {
     width: 18px;
     height: 18px;
@@ -243,8 +249,23 @@ body {
 }
 
 .features li {
+    align-items: center;
+    display: flex;
+    gap: 9px;
     padding: 8px 0;
     font-size: 15px;
+}
+
+.features svg,
+.contact-info svg {
+    fill: none;
+    flex: 0 0 auto;
+    height: 17px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.9;
+    width: 17px;
 }
 
 .contact-info {
@@ -254,6 +275,9 @@ body {
 }
 
 .contact-info p {
+    align-items: center;
+    display: flex;
+    gap: 8px;
     font-size: 13px;
     margin: 5px 0;
     opacity: 0.85;
