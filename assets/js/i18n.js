@@ -41,6 +41,8 @@
         'Seleccione médico, servicio y fecha.': 'Select a doctor, service, and date.',
         'Motivo de la cita o información adicional': 'Reason for the appointment or additional information',
         'Buscar por nombre o cédula': 'Search by name or national ID',
+        'Buscar factura, paciente o cédula': 'Search invoice, patient, or national ID',
+        'Número de factura, nombre o cédula': 'Invoice number, name, or national ID',
         'Buscar paciente por nombre o cédula': 'Search patient by name or national ID',
         'Buscar paciente': 'Search patient',
         'Registro y búsqueda rápida por nombre o cédula.': 'Quick registration and search by name or national ID.',

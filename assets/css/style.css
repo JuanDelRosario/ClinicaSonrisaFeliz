@@ -420,6 +420,12 @@ button, .btn, a.btn { border-radius: 9px; font-weight: 650; letter-spacing: .01e
 .badge { padding: 5px 10px; border: 1px solid transparent; font-weight: 700; }
 .alert { border-radius: 11px; box-shadow: 0 3px 10px rgba(20,60,39,.05); }
 
+.billing-search { margin: 0 0 18px; padding: 14px; border: 1px solid #cfe5d7; border-radius: 12px; background: #eff8f2; }
+.billing-search label { display: block; margin-bottom: 8px; color: #315842; font-size: 13px; font-weight: 700; }
+.billing-search > div { display: flex; gap: 9px; align-items: center; }
+.billing-search .form-control { max-width: 390px; }
+@media (max-width: 600px) { .billing-search > div { align-items: stretch; flex-direction: column; }.billing-search .form-control { max-width: none; } }
+
 /* Animaciones */
 @keyframes fadeIn {
     from {

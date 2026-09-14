@@ -263,4 +263,25 @@ document.addEventListener('DOMContentLoaded', () => {
         element.textContent = element.textContent.replace(/^[^\p{L}\p{N}]+/u, '').trim();
         element.insertAdjacentHTML('afterbegin', svg(icon));
     });
+
+    // Recepción puede filtrar la facturación sin alterar el listado financiero del Contador.
+    const isBillingPage = window.location.pathname.endsWith('/pages/facturacion.php');
+    const roleName = document.querySelector('.user-role')?.textContent.trim();
+    const billingSection = document.querySelector('.content-section.mt-20');
+    if (isBillingPage && roleName === 'Recepcionista' && billingSection) {
+        const query = new URLSearchParams(window.location.search);
+        const form = document.createElement('form');
+        form.method = 'get';
+        form.className = 'billing-search';
+        form.innerHTML = '<label for="buscar_factura">Buscar factura, paciente o cédula</label><div><input class="form-control" id="buscar_factura" type="search" name="buscar_factura" placeholder="Número de factura, nombre o cédula"><button class="btn btn-primary" type="submit">Buscar</button></div>';
+        form.querySelector('input').value = query.get('buscar_factura') || '';
+        if (query.has('buscar_factura')) {
+            const clear = document.createElement('a');
+            clear.className = 'btn btn-secondary';
+            clear.href = 'facturacion.php';
+            clear.textContent = 'Limpiar';
+            form.querySelector('div').appendChild(clear);
+        }
+        billingSection.prepend(form);
+    }
 });
