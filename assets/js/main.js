@@ -93,32 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Sidebar responsivo
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.querySelector('.sidebar');
-
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-        });
-    }
-
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-        });
-    }
-
-    // Cerrar sidebar al hacer clic en un link
-    if (sidebar) {
-        const navLinks = sidebar.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sidebar.classList.remove('active');
-            });
-        });
-    }
+    // El comportamiento del menú lateral se centraliza en sidebar.js para evitar
+    // que dos controladores alternen el mismo estado y se cancelen entre sí.
 
     // Las acciones rápidas abren directamente el formulario de alta.
     document.querySelectorAll('.quick-actions a.action-btn').forEach(link => {
