@@ -41,6 +41,8 @@
         'Seleccione médico, servicio y fecha.': 'Select a doctor, service, and date.',
         'Motivo de la cita o información adicional': 'Reason for the appointment or additional information',
         'Buscar por nombre o cédula': 'Search by name or national ID',
+        'Buscar paciente por nombre o cédula': 'Search patient by name or national ID',
+        'Buscar paciente': 'Search patient',
         'Registro y búsqueda rápida por nombre o cédula.': 'Quick registration and search by name or national ID.',
         'Confirmación de citas': 'Appointment confirmation', 'Mis citas de atención': 'My care appointments',
         'Nueva cita': 'New appointment', 'Confirmar': 'Confirm', 'Completar cita': 'Complete appointment',
