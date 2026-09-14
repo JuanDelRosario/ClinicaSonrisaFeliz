@@ -252,20 +252,20 @@ body {
     align-items: center;
     display: flex;
     gap: 9px;
+    line-height: 1.25;
     padding: 8px 0;
     font-size: 15px;
 }
 
-.features svg,
-.contact-info svg {
+.features svg {
     fill: none;
     flex: 0 0 auto;
-    height: 17px;
+    height: 14px;
     stroke: currentColor;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.9;
-    width: 17px;
+    width: 14px;
 }
 
 .contact-info {
@@ -275,12 +275,24 @@ body {
 }
 
 .contact-info p {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     gap: 8px;
     font-size: 13px;
     margin: 5px 0;
     opacity: 0.85;
+}
+
+.contact-info svg {
+    fill: none;
+    flex: 0 0 14px;
+    height: 14px;
+    margin-top: 2px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.9;
+    width: 14px;
 }
 
 .login-footer {
