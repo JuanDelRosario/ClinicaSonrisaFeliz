@@ -68,6 +68,7 @@ $logoVersion = (string) (filemtime(BASE_PATH . 'assets/images/logo-mi-sonrisa-fe
                         'consultas' => ['label' => 'Consultas', 'url' => BASE_URL . '/pages/consultas.php', 'icon' => 'Co'],
                         'facturacion' => ['label' => 'Facturación', 'url' => BASE_URL . '/pages/facturacion.php', 'icon' => 'F'],
                         'inventario' => ['label' => 'Inventario', 'url' => BASE_URL . '/pages/inventario.php', 'icon' => 'I'],
+                        'compras' => ['label' => 'Compras', 'url' => BASE_URL . '/pages/compras.php', 'icon' => 'C'],
                         'reportes' => ['label' => 'Reportes', 'url' => BASE_URL . '/pages/reportes.php', 'icon' => 'R'],
                         'servicios' => ['label' => 'Servicios', 'url' => BASE_URL . '/pages/servicios.php', 'icon' => 'S'],
                         'pacientes' => ['label' => 'Pacientes', 'url' => BASE_URL . '/pages/pacientes.php', 'icon' => '🧑‍🦱'],
@@ -115,6 +116,7 @@ $logoVersion = (string) (filemtime(BASE_PATH . 'assets/images/logo-mi-sonrisa-fe
                     $menu += [
                         'facturacion' => ['label' => 'Facturación', 'url' => BASE_URL . '/pages/facturacion.php', 'icon' => 'F'],
                         'pagos' => ['label' => 'Pagos', 'url' => BASE_URL . '/pages/pagos.php', 'icon' => 'P'],
+                        'compras' => ['label' => 'Compras', 'url' => BASE_URL . '/pages/compras.php', 'icon' => 'C'],
                         'nomina' => ['label' => 'Nómina', 'url' => BASE_URL . '/pages/nomina.php', 'icon' => 'N'],
                         'reportes' => ['label' => 'Reportes', 'url' => BASE_URL . '/pages/reportes.php', 'icon' => 'R'],
                         // Próximas funcionalidades en desarrollo:

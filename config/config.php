@@ -57,7 +57,7 @@ $ROLES = [
 $PERMISSIONS = [
     1 => [ // Administrador
         'usuarios', 'doctores', 'pacientes', 'citas', 'consultas',
-        'facturacion', 'inventario', 'reportes', 'auditorias'
+        'facturacion', 'inventario', 'compras', 'reportes', 'auditorias'
     ],
     2 => [ // Doctor
         'citas', 'consultas', 'historial_paciente', 'servicios'
@@ -69,7 +69,7 @@ $PERMISSIONS = [
         'mis_citas', 'mis_consultas', 'mis_facturas'
     ],
     5 => [ // Contador
-        'facturacion', 'historial_facturacion', 'reportes', 'nomina'
+        'facturacion', 'historial_facturacion', 'compras', 'reportes', 'nomina'
     ]
 ];
 
