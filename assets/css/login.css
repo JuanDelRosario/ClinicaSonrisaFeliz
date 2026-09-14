@@ -153,10 +153,12 @@ body {
     color: var(--primary-color);
 }
 
-.toggle-password svg {
+.eye-icon {
     display: block;
-    height: 19px;
-    width: 19px;
+    filter: grayscale(.25);
+    font-size: 16px;
+    font-style: normal;
+    line-height: 1;
 }
 
 .form-group input[type="checkbox"] {
@@ -257,15 +259,19 @@ body {
     font-size: 15px;
 }
 
-.features svg {
-    fill: none;
-    flex: 0 0 auto;
-    height: 14px;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.9;
-    width: 14px;
+.feature-icon {
+    align-items: center;
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .32);
+    border-radius: 50%;
+    display: inline-flex;
+    flex: 0 0 18px;
+    font-size: 12px;
+    font-weight: 800;
+    height: 18px;
+    justify-content: center;
+    line-height: 1;
+    width: 18px;
 }
 
 .contact-info {
@@ -283,16 +289,18 @@ body {
     opacity: 0.85;
 }
 
-.contact-info svg {
-    fill: none;
-    flex: 0 0 14px;
-    height: 14px;
-    margin-top: 2px;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.9;
-    width: 14px;
+.contact-icon {
+    align-items: center;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 6px;
+    display: inline-flex;
+    flex: 0 0 24px;
+    font-size: 13px;
+    height: 24px;
+    justify-content: center;
+    line-height: 1;
+    margin-top: -3px;
+    width: 24px;
 }
 
 .login-footer {
