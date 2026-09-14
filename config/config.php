@@ -60,7 +60,7 @@ $PERMISSIONS = [
         'facturacion', 'inventario', 'compras', 'reportes', 'auditorias'
     ],
     2 => [ // Doctor
-        'citas', 'consultas', 'historial_paciente', 'servicios'
+        'citas', 'consultas', 'historial_paciente', 'servicios', 'materiales'
     ],
     3 => [ // Recepcionista
         'usuarios', 'pacientes', 'citas', 'facturacion'

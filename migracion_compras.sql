@@ -1,2 +1,3 @@
 USE clinica_sonrisa_feliz_v2;
 CREATE TABLE IF NOT EXISTS compras_inventario (id_compra INT AUTO_INCREMENT PRIMARY KEY,id_inventario INT NOT NULL,cantidad INT NOT NULL,precio_unitario DECIMAL(10,2) NOT NULL,total DECIMAL(10,2) NOT NULL,fecha_compra DATE NOT NULL,proveedor VARCHAR(150),numero_comprobante VARCHAR(80),estado_compra ENUM('registrada','anulada') DEFAULT 'registrada',id_usuario_registra INT NULL,notas TEXT,CONSTRAINT fk_compra_inventario FOREIGN KEY(id_inventario) REFERENCES inventario(id_inventario),CONSTRAINT fk_compra_usuario FOREIGN KEY(id_usuario_registra) REFERENCES usuarios(id_usuario));
+ALTER TABLE inventario ADD COLUMN IF NOT EXISTS es_gastable TINYINT(1) NOT NULL DEFAULT 1 AFTER descripcion;

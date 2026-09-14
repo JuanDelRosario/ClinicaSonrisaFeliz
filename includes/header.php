@@ -66,6 +66,7 @@ $logoVersion = (string) (filemtime(BASE_PATH . 'assets/images/logo-mi-sonrisa-fe
                         'especialidades' => ['label' => 'Especialidades', 'url' => BASE_URL . '/pages/especialidades.php', 'icon' => 'E'],
                         'citas' => ['label' => 'Citas', 'url' => BASE_URL . '/pages/citas.php', 'icon' => 'C'],
                         'consultas' => ['label' => 'Consultas', 'url' => BASE_URL . '/pages/consultas.php', 'icon' => 'Co'],
+                        'materiales' => ['label' => 'Materiales', 'url' => BASE_URL . '/pages/materiales.php', 'icon' => 'M'],
                         'facturacion' => ['label' => 'Facturación', 'url' => BASE_URL . '/pages/facturacion.php', 'icon' => 'F'],
                         'inventario' => ['label' => 'Inventario', 'url' => BASE_URL . '/pages/inventario.php', 'icon' => 'I'],
                         'compras' => ['label' => 'Compras', 'url' => BASE_URL . '/pages/compras.php', 'icon' => 'C'],
