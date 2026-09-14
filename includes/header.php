@@ -87,6 +87,7 @@ $logoVersion = (string) (filemtime(BASE_PATH . 'assets/images/logo-mi-sonrisa-fe
                     $menu += [
                         'citas' => ['label' => 'Citas', 'url' => BASE_URL . '/pages/citas.php', 'icon' => 'C'],
                         'consultas' => ['label' => 'Consultas', 'url' => BASE_URL . '/pages/consultas.php', 'icon' => 'Co'],
+                        'materiales' => ['label' => 'Materiales', 'url' => BASE_URL . '/pages/materiales.php', 'icon' => 'M'],
                         // Próximas funcionalidades en desarrollo:
                         // 'citas' => ['label' => 'Mis Citas', 'url' => BASE_URL . '/pages/mis_citas.php', 'icon' => '📅'],
                         // 'consultas' => ['label' => 'Mis Consultas', 'url' => BASE_URL . '/pages/mis_consultas.php', 'icon' => '📋'],
