@@ -147,5 +147,6 @@
             alertDiv.style.display = 'block';
         }
     </script>
+    <script src="../assets/js/i18n.js?v=<?php echo filemtime(__DIR__ . '/../assets/js/i18n.js'); ?>"></script>
 </body>
 </html>
